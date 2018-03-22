@@ -18,7 +18,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    birthDate: Date,
     address: String,
     companyName: String,
     companyAddress: String
 });
+
+module.exports = mongoose.model('users', userSchema);
