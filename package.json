@@ -1,0 +1,11 @@
+{
+  "name": "react-node-jobportal",
+  "version": "1.0.0",
+  "description": "This is a job portal application built with React and NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Saad",
+  "license": "ISC"
+}
