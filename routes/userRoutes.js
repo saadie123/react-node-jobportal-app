@@ -50,7 +50,10 @@ router.post('/login',async (req,res)=>{
                 companyName: dbuser.companyName,
                 companyAddress: dbuser.companyAddress
             }
-            const token = jwt.sign(user,'javascriptislove',{
+            const token = jwt.sign({
+                id: dbuser.id,
+                ...user
+            },'javascriptislove',{
                 expiresIn: '1h'
             });
             res.status(200).send({user,token});
