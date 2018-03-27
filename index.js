@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -10,6 +11,8 @@ mongoose.connect('mongodb://saadie:saadie@ds121599.mlab.com:21599/job-portal');
 mongoose.Promise = global.Promise;
 
 app.use(bodyParser.json());
+
+app.use(express.static(path.join(__dirname,'client','public')));
 
 app.use('/user', userRoutes);
 app.use('/api/posts',postRoutes);
