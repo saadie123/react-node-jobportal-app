@@ -23,12 +23,7 @@ module.exports = {
                         loader: 'style-loader'
                     },
                     {
-                        loader: 'css-loader',
-                        options: {
-                            importLoaders: 1,
-                            modules: true,
-                            localIdentName: '[name]__[local]__[hash:base64:5]'
-                        }
+                        loader: 'css-loader'
                     },
                     {
                         loader: 'postcss-loader',
@@ -48,7 +43,11 @@ module.exports = {
             },
             {
                 test: /\.(png|jpe?g|gif)$/,
-                loader: 'url-loader?limi=8000000&name=images/[name].[ext]'
+                loader: 'url-loader?limit=8000000&name=images/[name].[ext]'
+            },
+            {
+                test: /\.(woff|woff2)$/,
+                loader: 'url-loader?limit=8000000'
             }
         ]
     },
