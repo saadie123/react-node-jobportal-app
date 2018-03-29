@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
+import {Switch,Route} from 'react-router-dom';
 
-import classes from './App.css';
-
+import Login from './User/Login/Login';
+import Register from './User/Register/Register';
 import Navbar from './Navbar/Navbar';
 
 class App extends Component{
     render(){
         return(
-            <div className={classes.App}>
+            <div>
                 <Navbar />
-                This is App Component
+                <div className="container">
+                    <Switch>
+                        <Route exact path="/login" component={Login}/>
+                        <Route path="/register" component={Register}/>    
+                    </Switch>
+                </div>                
             </div>
         )
     }
