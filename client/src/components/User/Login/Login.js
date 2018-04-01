@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import axios from 'axios';
+import * as actions from '../../../store/actions/auth';
 
 import './Login.css';
 class Login extends Component {
@@ -17,11 +19,12 @@ class Login extends Component {
         updatedLoginForm[inputName] = e.target.value;
         this.setState({loginForm: updatedLoginForm});
     }
-    onLogin = (e) => {
+    login = (e) => {
         e.preventDefault();
-        axios.post('/user/login',this.state.loginForm).then(response=>{
-            console.log(response);
-        });
+        this.props.onLogin(this.state.loginForm.email,this.state.loginForm.password);
+        // axios.post('/user/login',this.state.loginForm).then(response=>{
+        //     console.log(response);
+        // });
     }
 
     render(){
@@ -39,7 +42,7 @@ class Login extends Component {
                             <label htmlFor="password">Password</label>
                             <input type="password" onChange={(event) => this.inputChangeHandler(event,'password')} className="form-control"/>
                         </div>
-                        <button onClick={(event) => this.onLogin(event)} className="btn btn-primary" type="submit">Login</button>
+                        <button onClick={(event) => this.login(event)} className="btn btn-primary" type="submit">Login</button>
                     </form>
                     </div>
                 </div>
@@ -48,4 +51,10 @@ class Login extends Component {
     }
 }
 
-export default Login;
+const mapDispatchToProps = dispatch => {
+    return {
+        onLogin:(email,password) => dispatch(actions.loginUser(email,password))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Login);
