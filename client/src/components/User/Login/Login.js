@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import * as actions from '../../../store/actions/auth';
@@ -28,26 +29,37 @@ class Login extends Component {
     }
 
     render(){
-        return(
-            <div className="row">
-            <div className="login-form">
-                <h1 className="page-header">Login</h1>        
-                    <div className="col-md-6">
-                    <form action="">
-                        <div className="form-group">
-                            <label htmlFor="email">Email</label>
-                            <input type="email" onChange={(event) => this.inputChangeHandler(event,'email')} className="form-control"/>
+        if(this.props.user){
+            return  <Redirect to="/" />
+        } else {
+            return(
+                <div className="row">
+                <div className="login-form">
+                    <h1 className="page-header">Login</h1>        
+                        <div className="col-md-6">
+                        <form action="">
+                            <div className="form-group">
+                                <label htmlFor="email">Email</label>
+                                <input type="email" onChange={(event) => this.inputChangeHandler(event,'email')} className="form-control"/>
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="password">Password</label>
+                                <input type="password" onChange={(event) => this.inputChangeHandler(event,'password')} className="form-control"/>
+                            </div>
+                            <button onClick={(event) => this.login(event)} className="btn btn-primary" type="submit">Login</button>
+                        </form>
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="password">Password</label>
-                            <input type="password" onChange={(event) => this.inputChangeHandler(event,'password')} className="form-control"/>
-                        </div>
-                        <button onClick={(event) => this.login(event)} className="btn btn-primary" type="submit">Login</button>
-                    </form>
                     </div>
                 </div>
-            </div>
-        )
+            )
+        }
+        
+    }
+}
+
+const mapStateToProps = state => {
+    return {
+        user: state.auth.user
     }
 }
 
@@ -57,4 +69,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

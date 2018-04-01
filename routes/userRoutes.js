@@ -2,8 +2,13 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+const auth = require('../middlewares/auth');
 const User = require('../models/User');
 const router = express.Router();
+
+router.get('/current-user', auth,(req,res)=>{
+    res.status(200).send(req.userData);
+});
 
 router.post('/register',async (req, res) => {
     const oldUser = await User.findOne({email: req.body.email});

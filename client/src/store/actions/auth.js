@@ -14,3 +14,9 @@ export const loginUser = (email, password) => {
         })
     }
 }
+
+export const logoutUser = () => {
+    return dispatch => {
+        dispatch({type:actionTypes.LOGOUT});
+    }
+}

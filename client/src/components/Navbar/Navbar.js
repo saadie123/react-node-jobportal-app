@@ -7,8 +7,17 @@ const Navbar = (props) => {
     if(props.user){
         navlinks = (
             <ul className="navbar navbar-nav">
-                <li className="nav-item">
-                    <Link className="nav-link" to="/register">{props.user.name}</Link>                
+                <li className="nav-item dropdown">
+                    <a className="nav-link dropdown-toggle" href="#" id="userNavDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {props.user.name}
+                    </a>
+                    <div style={{minWidth:'7.5rem'}} className="dropdown-menu" aria-labelledby="userNavDropdown">
+                        <a className="dropdown-item" href="#">Profile</a>
+                    <div className="dropdown-divider"></div>
+                    <a className="dropdown-item" 
+                    data-toggle="modal" data-target="#logoutModal" 
+                    href="javascript:void()">Logout</a>
+                    </div>
                 </li>
             </ul>
         )
@@ -60,5 +69,6 @@ const mapStateToProps = state => {
         user: state.auth.user
     }
 }
+
 
 export default connect(mapStateToProps,null)(Navbar); 
