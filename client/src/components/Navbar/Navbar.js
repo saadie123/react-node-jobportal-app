@@ -1,7 +1,29 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 
 const Navbar = (props) => {
+    let navlinks = null;
+    if(props.user){
+        navlinks = (
+            <ul className="navbar navbar-nav">
+                <li className="nav-item">
+                    <Link className="nav-link" to="/register">{props.user.name}</Link>                
+                </li>
+            </ul>
+        )
+    } else{
+        navlinks = (
+            <ul className="navbar navbar-nav">
+                 <li className="nav-item">
+                    <Link className="nav-link" to="/login">Login</Link>
+                </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to="/register">Register</Link>                
+                </li>
+            </ul>
+        )
+    }
     return(
        <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
         <a href="#" className="navbar-brand">Navbar</a>
@@ -28,17 +50,15 @@ const Navbar = (props) => {
                     </div>
                 </li>
             </ul>
-            <ul className="navbar navbar-nav">
-                <li className="nav-item">
-                    <Link className="nav-link" to="/login">Login</Link>
-                </li>
-                <li className="nav-item">
-                    <Link className="nav-link" to="/register">Register</Link>                
-                </li>
-            </ul>
+            {navlinks}
         </div> 
        </nav>
     )
 }
+const mapStateToProps = state => {
+    return {
+        user: state.auth.user
+    }
+}
 
-export default Navbar; 
+export default connect(mapStateToProps,null)(Navbar); 

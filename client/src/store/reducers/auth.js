@@ -13,7 +13,6 @@ const reducer = (state = initialState, action) => {
                 token: action.payload.token
             }
             return updatedState;
-            break;
     
         default:
             return state;
