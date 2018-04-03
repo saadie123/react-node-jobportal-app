@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import {withRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
 import axios from 'axios';
+import * as actions from '../../../store/actions/index';
 
 import './Register.css';
 class Register extends Component {
@@ -36,10 +39,9 @@ class Register extends Component {
             companyName: this.state.registerForm.companyName,
             companyAddress: this.state.registerForm.companyAddress
         }
-        console.log(payload);
-        axios.post('/user/register',payload).then(response=>{
-            console.log(response);
-        });
+        this.props.registerUser(payload);
+        this.props.history.push('/login');
+        
     }
     render(){
         return(
@@ -96,4 +98,11 @@ class Register extends Component {
     }
 }
 
-export default Register;
+
+const mapDispatchToProps = (dispatch) =>{
+    return {
+        registerUser: (payload) => dispatch(actions.registerUser(payload)) 
+    }
+}
+
+export default connect(null, mapDispatchToProps)(withRouter(Register));

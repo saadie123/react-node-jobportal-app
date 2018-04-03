@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {Redirect} from 'react-router-dom'
 import * as actionTypes from './actionTypes';
 
 export const fetchUser = () => {
@@ -29,8 +30,19 @@ export const loginUser = (email, password) => {
     }
 }
 
+export const registerUser = (payload) =>{
+    return dispatch => {
+        axios.post('/user/register',payload).then(response=>{
+            console.log(response.data.message);
+        }).catch(error=>{
+            console.log(error);
+        })
+    }
+}
+
 export const logoutUser = () => {
     return dispatch => {
         dispatch({type:actionTypes.LOGOUT});
+        axios.defaults.headers.common['Authorization'] = '';                    
     }
 }
