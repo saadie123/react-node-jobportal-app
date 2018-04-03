@@ -1,1 +1,1 @@
-export {loginUser,logoutUser} from './auth';
+export {loginUser, logoutUser, fetchUser} from './auth';

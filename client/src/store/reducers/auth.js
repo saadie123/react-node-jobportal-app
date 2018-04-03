@@ -23,6 +23,12 @@ const reducer = (state = initialState, action) => {
                 token: null
             }
             return updatedState;
+        case actionTypes.FETCH_USER:
+            updatedState = {
+                ...state,
+                user: action.payload
+            }
+            return updatedState;
         default:
             return state;
             break;
