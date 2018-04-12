@@ -4,6 +4,7 @@ import {Switch,Route} from 'react-router-dom';
 import Home from './Home/Home';
 import Login from './User/Login/Login';
 import Register from './User/Register/Register';
+import Post from './Post/Post';
 import Navbar from './Navbar/Navbar';
 import Modal from './Modal/Modal';
 
@@ -18,6 +19,7 @@ class App extends Component{
                         <Route exact path="/" component={Home} />
                         <Route exact path="/login" component={Login}/>
                         <Route path="/register" component={Register}/>
+                        <Route path="/post/:id" component={Post}/>
                     </Switch>
                 </div>                
             </div>
