@@ -6,6 +6,7 @@ import * as actions from '../../store/actions/index';
 class Home extends Component {
     componentWillMount(){
         this.props.onFetchUser();
+        this.props.onFetchUserPosts();
         this.props.onFetchPosts();
     }
     render(){
@@ -41,7 +42,8 @@ class Home extends Component {
 const mapDispatchToProps = dispatch => {
     return {
         onFetchUser: () => dispatch(actions.fetchUser()),
-        onFetchPosts: () => dispatch(actions.fetchPosts())
+        onFetchPosts: () => dispatch(actions.fetchPosts()),
+        onFetchUserPosts: () => dispatch(actions.fetchUserPosts())
     }
 }
 

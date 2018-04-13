@@ -7,6 +7,8 @@ import Register from './User/Register/Register';
 import Post from './Post/Post';
 import Navbar from './Navbar/Navbar';
 import Modal from './Modal/Modal';
+import MyPosts from './MyPosts/MyPosts';
+import CreatePosts from './MyPosts/CreatePost/CreatePost';
 
 class App extends Component{
     render(){
@@ -20,6 +22,8 @@ class App extends Component{
                         <Route exact path="/login" component={Login}/>
                         <Route path="/register" component={Register}/>
                         <Route path="/post/:id" component={Post}/>
+                        <Route exact path ="/myposts" component={MyPosts} />
+                        <Route path="/myposts/create" component={CreatePosts}/>
                     </Switch>
                 </div>                
             </div>

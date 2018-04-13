@@ -26,7 +26,8 @@ const reducer = (state = initialState, action) => {
         case actionTypes.FETCH_USER:
             updatedState = {
                 ...state,
-                user: action.payload
+                user: action.payload.user,
+                token: action.payload.token
             }
             return updatedState;
         default:

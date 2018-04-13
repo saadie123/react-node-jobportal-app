@@ -9,3 +9,14 @@ export const fetchPosts = () =>{
         })
     }
 }
+
+export const fetchUserPosts = () => {
+    return dispatch => {
+        axios.get('/user/myposts').then(response=>{
+            console.log(response);
+            dispatch({type: actionTypes.FETCH_USER_POSTS, payload:{userPosts:response.data.posts}});
+        }).catch(e=>{
+            console.log(e);
+        })
+    }
+}

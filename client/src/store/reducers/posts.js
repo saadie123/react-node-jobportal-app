@@ -1,7 +1,8 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
-    posts: []
+    posts: [],
+    userPosts: []
 }
 
 const reducer = (state = initialState, action) => {
@@ -13,7 +14,12 @@ const reducer = (state = initialState, action) => {
                 posts: action.payload.posts
             }
             return updatedState;
-    
+        case actionTypes.FETCH_USER_POSTS:
+            updatedState = {
+                ...state,
+                userPosts: action.payload.userPosts
+            }
+            return updatedState;
         default:
             return state;
     }

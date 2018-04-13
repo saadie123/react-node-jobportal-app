@@ -1,2 +1,2 @@
 export { loginUser, registerUser, logoutUser, fetchUser } from './auth';
-export { fetchPosts } from './posts';
+export { fetchPosts, fetchUserPosts } from './posts';

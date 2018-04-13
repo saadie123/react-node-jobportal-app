@@ -4,10 +4,23 @@ const jwt = require('jsonwebtoken');
 
 const auth = require('../middlewares/auth');
 const User = require('../models/User');
+const Post = require('../models/Post');
 const router = express.Router();
 
 router.get('/current-user', auth,(req,res)=>{
-    res.status(200).send(req.userData);
+    res.status(200).send({user:req.userData,token: req.token});
+});
+
+router.get('/myposts', auth,async (req,res)=>{
+    try {
+        const posts = await Post.find({user:req.userData.id});
+        if(!posts){
+            res.status(404).send({message: 'No posts were found!'});
+        }
+        res.status(200).send({posts});
+    } catch (error) {
+        console.log(error);
+    }
 });
 
 router.post('/register',async (req, res) => {

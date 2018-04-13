@@ -10,7 +10,7 @@ export const fetchUser = () => {
         }
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         axios.get('/user/current-user').then(response=>{
-            dispatch({type: actionTypes.FETCH_USER, payload: response.data});
+            dispatch({type: actionTypes.FETCH_USER, payload: {user:response.data.user,token:response.data.token}});
         })
     }
 }

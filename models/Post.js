@@ -29,6 +29,7 @@ const postSchema = new mongoose.Schema({
     salary: Number,
     qualification: String,
     location: String,
+    contact: String,
     lastDate: Date,
     user:{
         type: mongoose.Schema.Types.ObjectId,
