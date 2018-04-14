@@ -9,6 +9,7 @@ import Navbar from './Navbar/Navbar';
 import Modal from './Modal/Modal';
 import MyPosts from './MyPosts/MyPosts';
 import CreatePosts from './MyPosts/CreatePost/CreatePost';
+import UpdatePost from './MyPosts/UpdatePost/UpdatePost';
 
 class App extends Component{
     render(){
@@ -24,6 +25,7 @@ class App extends Component{
                         <Route path="/post/:id" component={Post}/>
                         <Route exact path ="/myposts" component={MyPosts} />
                         <Route path="/myposts/create" component={CreatePosts}/>
+                        <Route path="/myposts/update/:id" component={UpdatePost}/>
                     </Switch>
                 </div>                
             </div>

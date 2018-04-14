@@ -14,6 +14,17 @@ const reducer = (state = initialState, action) => {
                 posts: action.payload.posts
             }
             return updatedState;
+        case actionTypes.CREATE_POST:
+            updatedState = {...state}
+            updatedState.userPosts.push(action.payload);
+            return updatedState;  
+        case actionTypes.UPDATE_POST:
+            updatedState = {...state};
+            let index = updatedState.userPosts.findIndex(post=>{
+                return post.id === action.payload.id
+            })
+            updatedState.userPosts[index] = payload.post;
+            return updatedState;
         case actionTypes.FETCH_USER_POSTS:
             updatedState = {
                 ...state,

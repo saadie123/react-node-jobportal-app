@@ -33,6 +33,30 @@ class Post extends Component{
                             <td>Job Type</td>
                             <td>{this.state.post.type}</td>
                         </tr>
+                        <tr>
+                            <td>Experience</td>
+                            <td>{this.state.post.experience}</td>
+                        </tr>
+                        <tr>
+                            <td>Salary</td>
+                            <td>{this.state.post.salary}</td>
+                        </tr>
+                        <tr>
+                            <td>Qualification</td>
+                            <td>{this.state.post.qualification}</td>
+                        </tr>
+                        <tr>
+                            <td>Location</td>
+                            <td>{this.state.post.location}</td>
+                        </tr>
+                        <tr>
+                            <td>Contact No.</td>
+                            <td>{this.state.post.contact}</td>
+                        </tr>
+                        <tr>
+                            <td>Last Date</td>
+                            <td>{new Date(Date.parse(this.state.post.lastDate)).toDateString()}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

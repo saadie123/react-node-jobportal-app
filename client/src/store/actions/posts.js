@@ -6,6 +6,26 @@ export const fetchPosts = () =>{
             dispatch({type:actionTypes.FETCH_POSTS, payload:response.data});
         }).catch(e=>{
             console.log(e);
+        });
+    }
+}
+
+export const createPost = (payload) => {
+    return dispatch => {
+        axios.post('/api/posts',payload).then(response=>{
+            dispatch({type:actionTypes.CREATE_POST, payload:response.data.post});            
+        }).catch(e=>{
+            console.log(e);
+        });
+    }
+}
+
+export const updatePost = (payload,id) => {
+    return dispatch => {
+        axios.put('/api/posts/'+id,payload).then(response => {
+            dispatch({type:actionTypes.CREATE_POST, payload:{post:response.data.post,id}});                        
+        }).catch(e=>{
+            console.log(e);
         })
     }
 }
@@ -17,6 +37,6 @@ export const fetchUserPosts = () => {
             dispatch({type: actionTypes.FETCH_USER_POSTS, payload:{userPosts:response.data.posts}});
         }).catch(e=>{
             console.log(e);
-        })
+        });
     }
 }

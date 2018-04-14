@@ -12,7 +12,7 @@ const MyPosts = (props) => {
                     <h6 className="card-subtitle mb-2 text-muted">{post.category}</h6>
                     <p className="card-text">{post.description}</p>
                     <div className="small mb-2">{new Date(Date.parse(post.postedOn)).toDateString()}</div>
-                    <Link to={"/post/"+post._id} className="btn btn-primary">Go to post</Link>
+                    <Link to={"/myposts/update/"+post._id} className="btn btn-primary">Update Post</Link>
                 </div>
             </div>
         )

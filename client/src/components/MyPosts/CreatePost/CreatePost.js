@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import {connect} from 'react-redux';
+import * as actions from '../../../store/actions/index';
 class CreatePost extends Component {
     state={
         postForm:{
@@ -29,10 +30,7 @@ class CreatePost extends Component {
             ...this.state.postForm,
             salary: Number(this.state.postForm.salary)
         }
-        axios.post('/api/posts',payload).then(response=>{
-        }).catch(e=>{
-            console.log(e);
-        })
+        this.props.onCreatePost(payload);
     }
 
 
@@ -40,6 +38,7 @@ class CreatePost extends Component {
         return (
            <div className="row justify-content-center">
             <div className="col-md-8">
+                <h1>Create Post</h1>
                 <form>
                     <div className="form-group">
                         <label htmlFor="">Title</label>
@@ -93,4 +92,10 @@ class CreatePost extends Component {
     }
 }
 
-export default CreatePost;
+const mapDispatchToProps = dispatch => {
+    return {
+        onCreatePost: (post) => dispatch(actions.createPost(post))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(CreatePost);
