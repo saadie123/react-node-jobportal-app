@@ -30,6 +30,16 @@ export const updatePost = (payload,id) => {
     }
 }
 
+export const deletePost = (id) => {
+    return dispatch => {
+        axios.delete('/api/posts/'+id).then(response=>{
+            dispatch({type:actionTypes.DELETE_POST, payload:{id}}); 
+        }).catch(e=>{
+            console.log(e);
+        })
+    }
+}
+
 export const fetchUserPosts = () => {
     return dispatch => {
         axios.get('/user/myposts').then(response=>{

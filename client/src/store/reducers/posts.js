@@ -17,13 +17,20 @@ const reducer = (state = initialState, action) => {
         case actionTypes.CREATE_POST:
             updatedState = {...state}
             updatedState.userPosts.push(action.payload);
-            return updatedState;  
+            return updatedState;
         case actionTypes.UPDATE_POST:
             updatedState = {...state};
             let index = updatedState.userPosts.findIndex(post=>{
                 return post.id === action.payload.id
             })
             updatedState.userPosts[index] = payload.post;
+            return updatedState;
+        case actionTypes.DELETE_POST:
+            updatedState = {...state};
+            let newUserPosts = updatedState.userPosts.filter(post=>{
+                return post._id !== action.payload.id
+            });
+            updatedState.userPosts = newUserPosts;
             return updatedState;
         case actionTypes.FETCH_USER_POSTS:
             updatedState = {
